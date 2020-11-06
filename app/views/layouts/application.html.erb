@@ -4,12 +4,19 @@
     <title>Guesto</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-    <%= yield %>
+    <main role="main" class="container">
+      <%= yield %>
+    </main>
+    <footer class="footer">  
+      <div class="container">
+        <span class="text-muted">
+          Guesto by Yourname
+        </span>
+      </div>
+    </footer>
   </body>
 </html>
