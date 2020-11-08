@@ -4,7 +4,7 @@ class GreetingsController < ApplicationController
   # GET /greetings
   # GET /greetings.json
   def index
-    @greetings = Greeting.all
+    @greetings = Greeting.all.order(created_at: :desc)
   end
 
   # GET /greetings/1
@@ -42,7 +42,7 @@ class GreetingsController < ApplicationController
   def update
     respond_to do |format|
       if @greeting.update(greeting_params)
-        format.html { redirect_to @greeting, notice: 'Greeting was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'Message sent.' }
         format.json { render :show, status: :ok, location: @greeting }
       else
         format.html { render :edit }
@@ -62,13 +62,13 @@ class GreetingsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_greeting
-      @greeting = Greeting.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_greeting
+    @greeting = Greeting.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def greeting_params
-      params.require(:greeting).permit(:name, :message)
-    end
+  # Only allow a list of trusted parameters through.
+  def greeting_params
+    params.require(:greeting).permit(:name, :message)
+  end
 end
